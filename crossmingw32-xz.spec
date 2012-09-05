@@ -32,6 +32,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %endif
 # -z options are invalid for mingw linker
 %define		filterout_ld    -Wl,-z,.*
+%define		filterout_c	-f[-a-z0-9=]*
 
 %description
 LZMA is default and general compression method of 7z format in 7-Zip
