@@ -1,13 +1,13 @@
 Summary:	LZMA library - MinGW32 cross version
 Summary(pl.UTF-8):	Biblioteka LZMA - wersja skrośna dla MinGW32
 Name:		crossmingw32-xz
-Version:	5.2.3
+Version:	5.2.4
 Release:	1
 License:	LGPL v2.1+
 Group:		Development/Libraries
-Source0:	http://tukaani.org/xz/xz-%{version}.tar.bz2
-# Source0-md5:	1592e7ca3eece099b03b35f4d9179e7c
-URL:		http://tukaani.org/xz/
+Source0:	https://tukaani.org/xz/xz-%{version}.tar.bz2
+# Source0-md5:	b3264b15ab1db04c8c428dc81838d4eb
+URL:		https://tukaani.org/xz/
 BuildRequires:	crossmingw32-gcc >= 3.4
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
