@@ -1,14 +1,17 @@
 Summary:	LZMA library - MinGW32 cross version
 Summary(pl.UTF-8):	Biblioteka LZMA - wersja skrośna dla MinGW32
 Name:		crossmingw32-xz
-Version:	5.6.3
+Version:	5.6.4
 Release:	1
 License:	0BSD
 Group:		Development/Libraries
 Source0:	https://github.com/tukaani-project/xz/releases/download/v%{version}/xz-%{version}.tar.bz2
-# Source0-md5:	855d37269e622eb4ea626f6a9b42f636
+# Source0-md5:	aea1159b666e2a0f6c3f809a3a70844e
 URL:		https://tukaani.org/xz/
 BuildRequires:	crossmingw32-gcc >= 3.4
+# + UCRT, which is not available for 32-bit - disable NLS for now
+#BuildRequires:	crossmingw32-gettext >= 0.23.1
+BuildRequires:	gettext-tools >= 0.19.6
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -81,7 +84,8 @@ LZMA - biblioteka DLL dla Windows.
 %build
 %configure \
 	--target=%{target} \
-	--host=%{target}
+	--host=%{target} \
+	--disable-nls
 
 %{__make}
 
@@ -101,8 +105,7 @@ mv -f $RPM_BUILD_ROOT%{_prefix}/bin/*.dll $RPM_BUILD_ROOT%{_dlldir}
 
 %{__rm} -r $RPM_BUILD_ROOT%{_bindir}/* \
 	$RPM_BUILD_ROOT%{_mandir} \
-	$RPM_BUILD_ROOT%{_datadir}/doc/xz \
-	$RPM_BUILD_ROOT%{_datadir}/locale
+	$RPM_BUILD_ROOT%{_datadir}/doc/xz
 
 %clean
 rm -rf $RPM_BUILD_ROOT
